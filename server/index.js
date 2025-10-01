@@ -1,10 +1,16 @@
-const http = require('http')
+const express = require('express')
 
-const server = http.createServer((req,res)=>{
-    console.log("New Request Recieved");
-    res.end('Hello From Server');
+const app = express();
+
+app.get('/',(req,res)=>{
+    res.send("Home Page");
 })
 
-server.listen(8000,()=>{
+app.get('/about',(req,res)=>{
+    const { name } = req.query;
+    res.send(`Hi ${name}`)
+})
+
+app.listen(8000,()=>{
     console.log("Server Started")
 })
